@@ -16,6 +16,66 @@
 .react-calendar__navigation__label__labelText {
   font-weight: 600;
 }
+.fc-next-button{
+  display: none !important;
+
+}
+.fc-prev-button{
+  display: none !important;
+
+}
+.fc-today-button{
+  display: none !important;
+
+}
+.fc-toolbar-title{
+  text-align: right !important;
+  font-size: medium !important;
+  font-weight: 700 !important;
+  
+}
+.fc-dayGridMonth-button{
+  font-size: small !important;
+  border: none !important;
+  background-color: #f1f0ff !important;
+  border: none !important;
+  color: black !important;
+
+
+}
+.fc-timeGridWeek-button{
+  font-size: small !important;
+border: none !important;
+background-color: #f1f0ff !important;
+border: none !important;
+color: black !important;
+
+}
+.fc-timeGridDay-button{
+  font-size: small !important;
+border: none !important;
+background-color: #f1f0ff !important;
+border: none !important;
+color: black !important;
+
+}
+.fc-button-active{
+  background-color: #dbdafe !important;
+  box-shadow: none;
+}
+.fc-timegrid-slot{
+  height: 65px !important;
+}
+.fc-event-main-frame{
+  padding-top: 5px;
+
+}
+.fc-event-title-fc-sticky{
+  text-align: center;
+
+}
+
+
 /*
 :root {
   --background: #ffffff;
