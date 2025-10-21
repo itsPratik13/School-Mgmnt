@@ -16,6 +16,13 @@ const Pagination = () => {
         ...
         <button className="px-2 rounded-lg ">10</button>
       </div>
+      <button
+    disabled={false}
+    className=" py-2 px-4 rounded-md bg-slate-200 text-xs font-semibold disabled:opacity-50 
+disabled:cursor-not-allowed cursor-pointer"
+  >
+    Next
+  </button>
     </div>
   );
 };

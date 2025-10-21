@@ -1,86 +1,80 @@
 import Pagination from "@/app/components/Pagination";
 import Table from "@/app/components/Table";
 import TableSearch from "@/app/components/TableSearch";
-import { role, teachersData } from "@/app/lib/data";
+import {
+  parentsData,
+  role,
+  studentsData,
+  teachersData,
+  subjectsData,
+  classesData,
+  lessonsData,
+  examsData,
+  assignmentsData,
+} from "@/app/lib/data";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
 const columns = [
   {
-    header: "Info",
-    accessor: "info",
-  },
-  {
-    header: "Teacher ID",
-    accessor: "teacherID",
+    header: "Subject Name",
+    accessor: "subjectname",
     classname: "hidden md:table-cell",
   },
   {
-    header: "Subject",
-    accessor: "subject",
+    header: "Class",
+    accessor: "class",
     classname: "hidden md:table-cell",
   },
   {
-    header:"Classes",
-    accessor:"classes",
-    classname:"hidden md:table-cell"
+    header: "Teacher",
+    accessor: "teacher",
+    classname: "hidden md:table-cell",
+  },
+  {
+    header: "Due Date",
+    accessor: "duedate",
+    classname: "hidden md:table-cell",
+  },
 
-  },
-  {
-    header: "Phone",
-    accessor: "phone",
-    classname: "hidden lg:table-cell",
-  },
-  {
-    header: "Address",
-    accessor: "address",
-    classname: "hidden lg:table-cell",
-  },
   {
     header: "Actions",
     accessor: "Actions",
   },
 ];
-type Teacher = {
+type Exams = {
   id: number;
-  teacherId: string;
-  name: string;
-  email?: string;
-  photo: string;
-  phone: string;
-  subjects: string[];
-  classes: string[];
-  address: string[];
+  subject: string;
+  class: string;
+  teacher: number;
+  dueDate:string;
+  
 };
 
-const TeacherList = () => {
-  const renderRow = (item: Teacher) => (
-    <tr key={item.id} className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-[#F1F0FF]">
+const AssignmentList = () => {
+  const renderRow = (item: Exams) => (
+    <tr
+      key={item.id}
+      className="border-b border-gray-200 even:bg-slate-50 text-sm hover:bg-[#F1F0FF]"
+    >
       <td className="flex items-center gap-4 p-4">
-        <Image
-          src={item.photo}
-          alt=""
-          width={40}
-          height={40}
-          className="rounded-full md:hidden xl:block w-10 h-10 object-cover"
-        />
         <div className="flex flex-col">
-          <h3 className="font-semibold">{item.name}</h3>
-          <p className="text-xs text-gray-500">{item?.email}</p>
+          <h3 className="font-semibold">{item.subject}</h3>
+          {/* <p className="text-xs text-gray-500">{item.teachers.join(",")}</p> */}
         </div>
       </td>
-      <td className="hidden md:table-cell">{item.teacherId}</td>
-      <td className="hidden md:table-cell">{item.subjects.join(",")}</td>
-      <td className="hidden md:table-cell">{item.classes.join(",")}</td>
-      <td className="hidden md:table-cell">{item.phone}</td>
-      <td className="hidden md:table-cell">{item.address}</td>
+      <td className="hidden md:table-cell">{item.class}</td>
+      <td className="hidden md:table-cell">{item.teacher}</td>
+      <td className="hidden md:table-cell">{item.dueDate}</td>
+      {/* <td className="hidden md:table-cell">{item.phone}</td> */}
+      {/* <td className="hidden md:table-cell">{item.address}</td> */}
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
             <button className="w-7 h-7 flex items-center justify-center rounded-full background-[#C3EBFA]">
               <Image
-                src="/view.png"
+                src="/edit.png"
                 alt=""
                 width={16}
                 height={16}
@@ -108,7 +102,7 @@ const TeacherList = () => {
       {/*Top title and searchbar and sort by */}
       <div className="flex items-center justify-between ">
         <h1 className="hidden md:block md:text-lg md:font-semibold">
-          All Teachers
+          All Assignments
         </h1>
         {/*search bar and sort buttons */}
         <div className="flex flex-col md:flex-row items-center gap-4 w-full md:w-auto">
@@ -120,18 +114,20 @@ const TeacherList = () => {
             <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[#FAE27C]">
               <Image src="/sort.png" alt="filter" height={14} width={14} />
             </button>
-            <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[#FAE27C]">
-              <Image src="/plus.png" alt="filter" height={14} width={14} />
-            </button>
+            {role === "admin" && (
+              <button className="w-8 h-8 flex items-center justify-center rounded-full bg-[#FAE27C]">
+                <Image src="/plus.png" alt="filter" height={14} width={14} />
+              </button>
+            )}
           </div>
         </div>
       </div>
       {/*list */}
-      <Table columns={columns} renderRow={renderRow} data={teachersData}/>
+      <Table columns={columns} renderRow={renderRow} data={assignmentsData} />
       {/**pagination */}
       <Pagination />
     </div>
   );
 };
 
-export default TeacherList;
+export default AssignmentList;
