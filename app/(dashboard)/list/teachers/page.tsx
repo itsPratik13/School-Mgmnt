@@ -78,7 +78,7 @@ const TeacherList = () => {
       <td>
         <div className="flex items-center gap-2">
           <Link href={`/list/teachers/${item.id}`}>
-            <button className="w-7 h-7 flex items-center justify-center rounded-full background-[#C3EBFA]">
+            <button className="w-7 h-7 flex items-center justify-center rounded-full background-[#C3EBFA] cursor-pointer">
               <Image
                 src="/view.png"
                 alt=""
